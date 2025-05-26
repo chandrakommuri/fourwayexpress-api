@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /products:
+    get:
+      tags:
+        - Product
+      operationId: GetProducts
+      summary: Get all products
+      description: Returns a list of products
+      responses:
+        '200':
+          description: A JSON array of product objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '401':
+          description: Unauthorized – authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden – insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Invalid request"
+        code:
+          type: integer
+          example: 400
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+          example: "12345"
+        name:
+          type: string
+          example: "Sample Product"
+      required:
+        - productId
+        - name

@@ -72,6 +72,10 @@ tasks.named('compileJava') {
 	dependsOn tasks.named('openApiGenerate')
 }
 
+tasks.named('jar') {
+	enabled = false
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

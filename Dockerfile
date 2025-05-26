@@ -1,5 +1,5 @@
 # Use Amazon Corretto JDK 21 as base image
-FROM amazoncorretto:21 as base
+FROM openjdk:21 as base
 
 LABEL authors="chandrakommuri"
 
